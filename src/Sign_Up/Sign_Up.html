@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore the StayHealthy sign-up layout for patients and doctors.">
+  <title>Sign Up | StayHealthy</title>
+  <link rel="stylesheet" href="../Navbar/Navbar.css">
+  <link rel="stylesheet" href="Sign_Up.css">
+  <script src="../assets/site.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="nav-container">
+      <a class="brand" href="../Landing_Page/LandingPage.html"><span class="brand-mark" aria-hidden="true">✚</span> StayHealthy.</a>
+      <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-navigation">Menu</button>
+      <nav aria-label="Main navigation">
+        <ul class="nav-links" id="primary-navigation">
+          <li><a href="../Landing_Page/LandingPage.html">Home</a></li>
+          <li><a href="../Landing_Page/LandingPage.html#appointments">Appointments</a></li>
+          <li><a href="../Sign_Up/Sign_Up.html" aria-current="page">Sign Up</a></li>
+          <li><a href="../Login/Login.html">Login</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main class="auth-layout container" id="main">
+    <section class="auth-copy" aria-labelledby="signup-heading">
+      <p class="eyebrow">Care starts with connection</p>
+      <h1 id="signup-heading">A healthier tomorrow starts here.</h1>
+      <p>A welcoming space to connect with doctors and take the next step in your care, wherever you are.</p>
+      <ul class="benefits">
+        <li>Find the right doctor for your needs</li>
+        <li>Choose appointments that fit your day</li>
+        <li>Keep your care in one place</li>
+      </ul>
+    </section>
+    <section class="form-card" aria-labelledby="form-heading">
+      <h2 id="form-heading">Create your account</h2>
+      <p class="form-intro">Already have an account? <a href="../Login/Login.html">Login</a></p>
+      <form action="#" method="post" data-static-form aria-describedby="form-note">
+        <fieldset class="static-fields" data-static-fields disabled>
+        <legend class="sr-only">Sign-up details</legend>
+        <div class="form-grid">
+          <div class="field">
+            <label for="role">Role</label>
+            <select id="role" name="role" required>
+              <option value="" disabled selected>Select your role</option>
+              <option value="doctor">Doctor</option>
+              <option value="patient">Patient</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" autocomplete="name" placeholder="Your full name" required>
+          </div>
+          <div class="field">
+            <label for="phone">Phone Number</label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="Your phone number" required>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+          </div>
+          <div class="field">
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" autocomplete="new-password" minlength="8" aria-describedby="password-hint" placeholder="Create a password" required>
+            <p class="field-hint" id="password-hint">Use at least 8 characters.</p>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button class="button" type="submit">Submit</button>
+          <button class="button outline" type="reset">Reset</button>
+        </div>
+        <p class="form-note" id="form-note">Academic layout. Use fictional data; no account is created.</p>
+        <p class="form-status" role="status" data-form-status hidden></p>
+        </fieldset>
+      </form>
+      <noscript><p class="form-note">JavaScript is needed to test this static form without sending data.</p></noscript>
+    </section>
+  </main>
+  <footer class="site-footer container">Academic static layout · IBM Front-End Capstone.</footer>
+</body>
+</html>

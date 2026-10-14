@@ -1,0 +1,217 @@
+.static-fields  {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+.sr-only  {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.auth-layout  {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: center;
+  padding-block: 3.5rem 4.5rem;
+}
+
+.auth-copy  {
+  max-width: 31rem;
+}
+
+.eyebrow  {
+  color: #456c4d;
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
+.auth-copy h1  {
+  margin: 1rem 0;
+  font-size: clamp(2.3rem, 4.3vw, 4rem);
+  line-height: 1.07;
+  letter-spacing: -.055em;
+}
+
+.auth-copy > p:not(.eyebrow)  {
+  color: #53655c;
+  font-size: 1.08rem;
+  line-height: 1.7;
+}
+
+.benefits  {
+  list-style: none;
+  margin: 2rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.benefits li  {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  font-size: .95rem;
+}
+
+.benefits li::before  {
+  content: '✓';
+  display: grid;
+  place-items: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  background: #d4ed95;
+  color: #123f35;
+  flex-shrink: 0;
+  font-weight: 800;
+}
+
+.form-card  {
+  background: #fff;
+  border: 1px solid #e1e7dc;
+  border-radius: 1.5rem;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  box-shadow: 0 18px 60px #123f3509;
+}
+
+.form-card h2  {
+  font-size: 1.8rem;
+  letter-spacing: -.04em;
+  margin: 0 0 .5rem;
+}
+
+.form-intro  {
+  color: #647268;
+  margin: 0 0 1.75rem;
+  line-height: 1.6;
+}
+
+.form-intro a, .form-footer a  {
+  color: #123f35;
+  font-weight: 700;
+  text-underline-offset: .2em;
+}
+
+.form-grid  {
+  display: grid;
+  gap: 1rem;
+}
+
+.field  {
+  display: grid;
+  gap: .45rem;
+}
+
+.field label  {
+  font-size: .88rem;
+  font-weight: 700;
+}
+
+.field input, .field select  {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 3rem;
+  padding: .75rem .9rem;
+  border: 1px solid #cdd8cc;
+  border-radius: .6rem;
+  background: #fbfcf9;
+  color: #123f35;
+  font: inherit;
+}
+
+.field input::placeholder  {
+  color: #7b887d;
+}
+
+.field input:focus-visible, .field select:focus-visible  {
+  outline: 3px solid #b2d477;
+  outline-offset: 2px;
+  border-color: #123f35;
+}
+
+.field-hint  {
+  color: #647268;
+  font-size: .77rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.form-actions  {
+  display: flex;
+  gap: .75rem;
+  margin-top: 1.4rem;
+}
+
+.form-actions .button  {
+  flex: 1;
+}
+
+.form-note  {
+  font-size: .78rem;
+  color: #647268;
+  line-height: 1.6;
+  margin: 1.25rem 0 0;
+}
+
+.form-status  {
+  padding: .8rem 1rem;
+  border-radius: .6rem;
+  background: #eef6dc;
+  color: #123f35;
+  line-height: 1.5;
+}
+
+.form-footer  {
+  text-align: center;
+  margin: 1.5rem 0 0;
+  font-size: .88rem;
+  color: #647268;
+}
+
+@media (max-width: 760px)  {
+  .auth-layout  {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding-block: 2rem 3rem;
+  }
+
+  .auth-copy  {
+    max-width: none;
+  }
+
+  .auth-copy h1  {
+    font-size: 2.3rem;
+  }
+
+  .auth-copy > p:not(.eyebrow)  {
+    font-size: 1rem;
+  }
+
+  .benefits  {
+    display: none;
+  }
+
+  .form-card  {
+    border-radius: 1rem;
+  }
+
+}
+
+@media (max-width: 380px)  {
+  .form-actions  {
+    flex-direction: column;
+  }
+
+}

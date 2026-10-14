@@ -1,0 +1,279 @@
+.hero-section {
+  display:grid;
+  grid-template-columns:1.2fr 1fr;
+  gap:70px;
+  align-items:center;
+  padding-block:70px
+}
+
+.hero-copy h1 {
+  font-size:clamp(42px,4.8vw,65px);
+  font-weight:700;
+  line-height:1.15;
+  margin-top:24px;
+  letter-spacing:-2.7px
+}
+
+.hero-copy h1 span {
+  color:#62843c
+}
+
+.hero-copy>p {
+  font-size:16px;
+  max-width:450px;
+  color:var(--muted);
+  margin-top:25px
+}
+
+.hero-actions {
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:28px
+}
+
+.hero-copy .hero-caption {
+  font-size:11px;
+  line-height:1.7;
+  margin-top:30px
+}
+
+.hero-art {
+  position:relative;
+  min-height:385px;
+  background:#e2ecd6;
+  border-radius:140px 140px 22px 22px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:20px
+}
+
+.cross {
+  display:grid;
+  place-items:center;
+  width:170px;
+  height:170px;
+  border-radius:42px;
+  background:var(--green);
+  color:var(--lime);
+  font-size:130px;
+  line-height:1
+}
+
+.hero-art>span {
+  font-size:14px;
+  color:#4e7138
+}
+
+.art-note {
+  position:absolute;
+  right:-17px;
+  bottom:45px;
+  background:#fff;
+  padding:19px 24px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  font-size:13px;
+  box-shadow:0 8px 20px #123f3509
+}
+
+.benefits {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:35px;
+  border-block:1px solid var(--line);
+  padding-block:30px
+}
+
+.benefits>div {
+  padding-right:20px;
+  border-right:1px solid var(--line)
+}
+
+.benefits>div:last-child {
+  border-right:0
+}
+
+.benefits>div>span {
+  font-size:11px;
+  color:#668043;
+  display:block;
+  margin-bottom:14px
+}
+
+.benefits h2 {
+  font-size:17px;
+  letter-spacing:-.4px
+}
+
+.benefits p {
+  font-size:12px;
+  color:var(--muted);
+  margin-top:10px
+}
+
+.appointments-section {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:35px;
+  margin-block:50px 40px;
+  padding:36px;
+  background:var(--green);
+  color:#fff;
+  border-radius:16px;
+  scroll-margin-top:25px
+}
+
+.appointments-section .eyebrow {
+  color:var(--lime)
+}
+
+.appointments-section h2 {
+  font-size:28px;
+  margin-top:15px
+}
+
+.appointments-section p {
+  max-width:620px;
+  font-size:13px;
+  color:#c1d4c5;
+  margin-top:16px
+}
+
+.appointment-actions {
+  display:flex;
+  align-items:center;
+  flex-direction:column;
+  gap:17px;
+  flex-shrink:0
+}
+
+.appointment-actions>a:last-child {
+  font-size:12px;
+  color:#d5e5ce;
+  text-decoration:underline;
+  text-underline-offset:4px
+}
+
+@media(max-width:900px) {
+  .hero-section {
+    gap:35px;
+    padding-block:50px
+  }
+
+  .hero-copy h1 {
+    font-size:45px
+  }
+
+  .hero-art {
+    min-height:330px
+  }
+
+  .hero-copy>p {
+    font-size:14px
+  }
+
+  .hero-actions .button {
+    font-size:12px;
+    padding:13px 16px
+  }
+
+  .appointments-section {
+    align-items:flex-start;
+    flex-direction:column
+  }
+
+  .appointment-actions {
+    flex-direction:row;
+    flex-wrap:wrap;
+    gap:20px
+  }
+
+}
+
+@media(max-width:600px) {
+  .hero-section {
+    grid-template-columns:1fr;
+    gap:32px;
+    padding-block:35px
+  }
+
+  .hero-copy h1 {
+    font-size:43px;
+    letter-spacing:-1.8px;
+    margin-top:20px
+  }
+
+  .hero-copy>p {
+    font-size:14px;
+    margin-top:22px
+  }
+
+  .hero-art {
+    min-height:300px;
+    margin:0 12px 0 0;
+    border-radius:100px 100px 18px 18px
+  }
+
+  .cross {
+    width:140px;
+    height:140px;
+    font-size:105px;
+    border-radius:33px
+  }
+
+  .art-note {
+    right:-10px;
+    bottom:30px;
+    padding:14px 18px;
+    font-size:11px
+  }
+
+  .benefits {
+    grid-template-columns:1fr;
+    gap:24px;
+    padding-block:26px
+  }
+
+  .benefits>div {
+    border-right:0;
+    border-bottom:1px solid var(--line);
+    padding:0 0 22px
+  }
+
+  .benefits>div:last-child {
+    border:0;
+    padding:0
+  }
+
+  .benefits>div>span {
+    margin-bottom:9px
+  }
+
+  .appointments-section {
+    padding:27px 23px;
+    margin-block:35px
+  }
+
+  .appointments-section h2 {
+    font-size:25px
+  }
+
+  .appointments-section p {
+    font-size:12px
+  }
+
+  .appointment-actions {
+    align-items:flex-start;
+    flex-direction:column
+  }
+
+  .hero-actions {
+    gap:9px
+  }
+
+}
+
