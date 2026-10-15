@@ -1,9 +1,14 @@
-# Medical Appointment Booking — StayHealthy
+# Medical Appointment Booking â€” StayHealthy
 
-IBM Front-End Development Capstone, Module 3. A responsive React/Vite application adapted from the preceding HTML/CSS layouts and the IBM lab components.
+IBM Front-End Development Capstone, Final project (Modules 1–5). A responsive React/Vite application adapted from the preceding HTML/CSS layouts and the IBM lab components.
+
+Public deployment: https://stayhealthy-capstone-micael.micahos.chatgpt.site/
 
 ## Features
 
+- Application-wide Notification card updates after booking and cancellation.
+- GiveReviews and ReviewForm: accessible star ratings, comments and one review per demonstration booking.
+- ProfileCard edits name and phone through the authenticated API; ReportsLayout displays/downloads the fictional patient_report.PDF.
 - Shared responsive Navbar and React Router navigation.
 - Patient registration and login connected to the Express/MongoDB backend. Validated required fields, email, ten-digit phone and password length; reset, error and loading states.
 - Session token kept in sessionStorage; profile restored through the authenticated API. Logout removes token/email and returns Home.
@@ -78,3 +83,11 @@ Instant consultation source and adaptations: [SOURCE.md](src/Components/InstantC
 Required screenshots are saved separately in the local stayhealthy-modulo3-evidencias delivery folder, including the exact checklist filename InstantConsultaion.png and the lab alias instant_consultation.png.
 
 The updated setup lab explicitly requires Vite (`npm create vite@latest`). Checklist question1 still names Create React App. This project intentionally follows the updated lab; it was not created using only create-react-app. Do not mark that literal statement true.
+
+## Hosted API
+
+The deployed Site serves the React production build and a same-origin Worker API from hosting/api.js. D1 stores demonstration accounts with salted PBKDF2 password hashes and hashed one-hour opaque sessions. User profile access is scoped to the authenticated session. The original Express/MongoDB server remains available for the course laboratory. Bookings/reviews stay in sessionStorage; this is disclosed in the UI.
+
+Hosted checks: `node --test hosting/api.test.mjs`. Schema migration: `drizzle/0000_auth.sql`. The hosting build embeds the Vite assets and the API in a Worker; it does not expose server secrets to the browser.
+
+SEO description, keywords, robots and theme-color are in index.html.
