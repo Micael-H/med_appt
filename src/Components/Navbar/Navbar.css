@@ -251,7 +251,7 @@ button:disabled {
   margin-top:24px
 }
 
-@media(max-width:760px) {
+@media(max-width:1200px) {
   .nav-container {
     min-height:76px;
     flex-wrap:wrap;
@@ -273,7 +273,7 @@ button:disabled {
     flex-wrap:wrap
   }
 
-  .js .nav-links:not(.is-open) {
+  .nav-links:not(.is-open) {
     display:none
   }
 

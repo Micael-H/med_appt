@@ -10,6 +10,7 @@ export default function Navbar({ user, onLogout }) {
     <button className="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded={open} aria-controls="primary-navigation" onClick={() => setOpen(!open)}>Menu</button>
     <nav aria-label="Main navigation"><ul className={`nav-links ${open ? 'is-open' : ''}`} id="primary-navigation">
       <li><NavLink to="/" onClick={close}>Home</NavLink></li><li><NavLink to="/appointments" onClick={close}>Appointments</NavLink></li><li><NavLink to="/instant-consultation" onClick={close}>Consult now</NavLink></li>
+      {user && <><li><NavLink to="/reviews" onClick={close}>Reviews</NavLink></li><li><NavLink to="/profile" onClick={close}>Profile</NavLink></li><li><NavLink to="/reports" onClick={close}>Reports</NavLink></li></>}
       {user ? <><li><span className="nav-user">Hello, {user.email.split('@')[0]}</span></li><li><button className="button outline" onClick={logout}>Logout</button></li></> : <><li><NavLink to="/signup" onClick={close}>Sign Up</NavLink></li><li><NavLink to="/login" onClick={close}>Login</NavLink></li></>}
     </ul></nav></div></header>
 }
