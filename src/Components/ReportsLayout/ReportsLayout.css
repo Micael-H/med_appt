@@ -1,0 +1,10 @@
+@import '../../assets/forms.css';
+.reports-page { padding-block: 48px 70px; }
+.reports-page h1 { margin-block: 12px 20px; }
+.reports-intro { max-width: 720px; color: var(--muted); margin-bottom: 28px; }
+.report-card { border: 1px solid var(--line); background: white; border-radius: 18px; padding: 28px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.report-card h2 { font-size: 23px; margin-block: 12px 8px; }
+.report-card p { color: var(--muted); font-size: 14px; }
+.report-badge { color: var(--green); background: var(--lime); padding: 5px 10px; border-radius: 20px; font-size: 12px; }
+.report-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+@media(max-width:760px) { .report-card { align-items: flex-start; flex-direction: column; padding: 22px; } }
