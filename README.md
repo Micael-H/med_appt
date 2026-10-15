@@ -1,118 +1,80 @@
-# Medical Appointment Booking
+# Medical Appointment Booking — StayHealthy
 
-## About the project
+IBM Front-End Development Capstone, Module 3. A responsive React/Vite application adapted from the preceding HTML/CSS layouts and the IBM lab components.
 
-Medical Appointment Booking is the StayHealthy Inc. website project for the IBM Front-End Development Capstone. StayHealthy is a non-profit organization working to improve access to healthcare in remote areas. The planned website helps patients find doctors and schedule consultations.
+## Features
 
-## Current development stage
+- Shared responsive Navbar and React Router navigation.
+- Patient registration and login connected to the Express/MongoDB backend. Validated required fields, email, ten-digit phone and password length; reset, error and loading states.
+- Session token kept in sessionStorage; profile restored through the authenticated API. Logout removes token/email and returns Home.
+- Doctor search by name or specialty, specialty suggestions, ratings and experience.
+- AppointmentForm inside DoctorCard, available date/time selection, confirmation, conflict prevention, cancellation and upcoming appointments. Bookings are an academic simulation stored per user in the current browser tab, not backend appointments.
+- InstantConsultation adapted from the IBM ZIP with reactjs-popup and UUID booking references. Controlled form and confirmation/cancellation are integrated; no live consultation occurs.
 
-This stage implements the **static website layouts** laboratory using HTML and CSS, with a small JavaScript enhancement for the mobile menu and demonstration form submission. The starter landing page has been adapted to the approved Module 1 design, using a green, lime and cream palette.
+All doctors, ratings and availability are fictional demonstration fixtures. Use fictional patient information. This is an educational application, not a production healthcare service.
 
-The pages include:
-
-- A responsive navigation bar with Home, Appointments, Sign Up and Login links.
-- A sign-up form with required Role (Patient or Doctor), Name, Phone Number, Email and Password fields, plus Submit and Reset buttons. Email uses native email validation; the password requires at least eight characters.
-- A login form with required Email and Password fields, plus Login and Reset buttons.
-- Reciprocal links between the sign-up and login pages and links back to the landing page.
-
-These are academic layouts. Authentication, patient profiles and appointment processing belong to later development stages.
-
-## Repository structure
+## Structure
 
 ```text
-grihf-frontend_capstone_starter_code/
-├── Landing_Page/
-│   ├── LandingPage.html
-│   └── LandingPage.css
-├── Navbar/
-│   ├── Navbar.html
-│   └── Navbar.css
-├── Sign_Up/
-│   ├── Sign_Up.html
-│   └── Sign_Up.css
-├── Login/
-│   ├── Login.html
-│   └── Login.css
-├── assets/
-│   ├── forms.css
-│   └── site.js
-├── .gitignore
-└── README.md
+med_appt/
+  src/
+    Components/
+      Navbar/             Navbar.jsx + Navbar.css
+      Landing_Page/       Landing_Page.jsx + LandingPage.css
+      Sign_Up/            Sign_Up.jsx + Sign_Up.css
+      Login/              Login.jsx + Login.css
+      FindDoctorSearch/   specialty/name search
+      DoctorCard/         doctor details, form, cancellation
+      AppointmentForm/    date/time form
+      BookAppointment/    booking coordination and tab persistence
+      InstantConsultation/ IBM component adaptation and SOURCE.md
+      data/               fictional doctors and availability
+    services/auth.js      register/login API client
+    config.js             API_URL
+    App.jsx               routes and authenticated session
+  server/                 Express API and MongoDB connection
+  scripts/smoke-api.cjs    real API authorization regression checks
 ```
 
-`Navbar.css` supplies the shared visual styles, and `assets/forms.css` shares the form layout between Sign Up and Login. The lab may refer to `Landing_Page` simply as the Landing folder.
+The preceding HTML files remain alongside their converted components as course references. The running application uses JSX.
 
-## Open the website
+## Install and run
 
-No npm installation or build step is required.
+Use Node.js compatible with the version of Vite declared in package.json.
 
-Open `Landing_Page/LandingPage.html` in a modern browser, then use the navigation links to open Sign Up and Login.
-
-### Skills Network Labs
-
-1. Open the cloned repository in the lab editor.
-2. Open `Landing_Page/LandingPage.html` and choose **Go Live** to start Live Server.
-3. If the preview does not open automatically, open the lab's application preview on port **5500** and navigate to `/Landing_Page/LandingPage.html`.
-
-### Optional local server
-
-If Python is installed, run this command from the repository root:
-
-```bash
-python -m http.server 5500
+```sh
+npm ci
+npm ci --prefix server
 ```
 
-Then visit [the local landing page](http://localhost:5500/Landing_Page/LandingPage.html).
+1. Copy server/.env.example to server/.env. Configure MONGODB_URI using the current Skills Network MongoDB connection, generate a random JWT_SECRET and set CLIENT_ORIGIN to the frontend's exact origin. PORT defaults to 8181. Never commit this file.
+2. Copy .env.example to .env in the project root. Set VITE_API_URL to the backend URL (localhost:8181 for local development). For Skills Network preview, set VITE_PREVIEW_HOST to the exact port4173 preview hostname without https:// or a path. Never put a password in a VITE_ variable.
+3. Run `npm start --prefix server`. Database connection must succeed before the server starts. The root endpoint returns Hello World!.
+4. Run `npm run dev` for local development, or `npm run preview` for the course lab. Preview builds first, then serves on port4173. Launch that port through the Skills Network Toolbox.
 
-## Form behavior and data
+On restarting the lab's MongoDB service, update only the ignored server/.env because the host and password may change.
 
-`assets/site.js` controls the responsive navigation and handles demonstration form submissions. With the script loaded, native browser validation checks the required fields before submission. A successful demonstration clears the fields and displays a status message; Reset clears the fields and that message.
+## Validation
 
-The demonstration does not create accounts, authenticate users, store credentials or transmit form data. Use fictional information only. Never commit personal access tokens, passwords, private keys or real patient information.
+```sh
+npm run build
+npm run lint
+node --check server/index.js
+node scripts/smoke-api.cjs
+```
 
-## Laboratory evidence
+The smoke test requires the backend running on localhost:8181 and server/.env or environment variables pointing to the same MongoDB. It creates two unique fictional users, checks authentication, isolation of profile updates and CORS, then removes only its own records. It never prints passwords, tokens or the Mongo URI.
 
-Capture the implemented layouts in the browser and save the screenshots with the names required by the lab:
+Browser checks cover registration/login, invalid inputs, logout/session restoration, search, booking/cancellation, duplicate-time prevention, instant consultation and mobile layouts.
 
-- `navbar_layout.png`
-- `signup_form_layout.png`
-- `login_form_layout.png`
+## Backend and source adaptations
 
-These names describe the evidence to prepare; this README does not certify that screenshots or checks have already been completed.
+The backend is based on the course's Server_Setup.zip. Credentials use environment variables; JWTs expire; profile routes use the verified token id instead of trusting an email header. Send auth-token or Authorization: Bearer when accessing profiles. CORS allows CLIENT_ORIGIN only (comma-separated origins supported).
 
-## Later course stages
+Instant consultation source and adaptations: [SOURCE.md](src/Components/InstantConsultation/SOURCE.md). Signup/Login follow the supplied conversion lab's API contracts and controlled React state; invalid reloads, unused code and insecure credential handling were corrected.
 
-The first-phase requirements also include doctor listings and search, appointment scheduling, rescheduling and cancellation, upcoming appointment notifications, consultation feedback and profile management. Follow the later course labs to implement those features and their required React and backend integration.
+## Course checklist and evidence
 
-## Upstream starter
+Required screenshots are saved separately in the local stayhealthy-modulo3-evidencias delivery folder, including the exact checklist filename InstantConsultaion.png and the lab alias instant_consultation.png.
 
-[IBM Developer Skills Network — Front-End Capstone Starter Code](https://github.com/ibm-developer-skills-network/grihf-frontend_capstone_starter_code)
-
-This project builds on the official starter repository. Refer to the upstream repository for its applicable terms.
-
-## Skills Network lab
-
-Cloned and verified in IBM Skills Network Cloud IDE.
-
-## React environment and backend connectivity
-
-This repository is `med_appt`, the next course stage. The React UI is the default Vite screen required by this lab; the previous HTML/CSS layouts are preserved directly under `src/Landing_Page`, `src/Navbar`, `src/Sign_Up`, `src/Login` and `src/assets`. Conversion to React components belongs to the next labs.
-
-### Run in Skills Network
-
-1. Run `npm ci` in the project root and `npm ci --prefix server`.
-2. Create MongoDB in Skills Network Toolbox. Copy `server/.env.example` to `server/.env`. Set `MONGODB_URI` using the current Mongo host, port and password (URL-encode the password if necessary). Set a random `JWT_SECRET` and set `CLIENT_ORIGIN` to the client preview URL for port 4173.
-3. Run `node index.js` from `server`. A successful database connection is confirmed before the HTTP server starts on port 8181. Launch port 8181 in the toolbox; it should display `Hello World!`.
-4. Copy `.env.example` to `.env` in the project root and set `VITE_API_URL` to the backend preview URL. This is a public endpoint, never a password.
-5. Run `npm run preview` in the root and launch port 4173. The preview command builds before starting the Vite preview server.
-
-The lab services are temporary. After restarting MongoDB, update only the ignored `server/.env`; never commit it. `src/config.js` reads `VITE_API_URL` with a localhost:8181 fallback. `src/Setauthtoken.js` is supplied for the later routing integration and requires React Router.
-
-### Backend adjustments
-
-Based on the IBM Server_Setup.zip provided in the course. Credentials are read from environment variables rather than committed into db.js. The backend waits for MongoDB, limits CORS to CLIENT_ORIGIN (comma-separated origins allowed), uses expiring JWTs and protects profile routes by the authenticated user's token id. Send `auth-token` or `Authorization: Bearer ...` when accessing GET/PUT `/api/auth/user` or PUT `/api/auth/update`; an email header alone is not authorization. Use fictitious test data only.
-
-Validation commands: `npm run build`, `npm run lint`, and `node --check server/index.js`. This is an educational starter, not a production healthcare system.
-
-For the Skills Network client preview, also set VITE_PREVIEW_HOST in the root .env to the exact hostname of the port 4173 preview URL, without https:// or a path. This explicitly allows that host in Vite preview.
-
+The updated setup lab explicitly requires Vite (`npm create vite@latest`). Checklist question1 still names Create React App. This project intentionally follows the updated lab; it was not created using only create-react-app. Do not mark that literal statement true.

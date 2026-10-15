@@ -1,0 +1,8 @@
+.booking-ic-search { display: block; }
+.booking-ic-suggestions { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1rem; }
+.booking-ic-dialog { color: #123f35; text-align: left; }
+.booking-ic-dialog .booking-demo { margin-bottom: 1rem; }
+.booking-ic-dialog h3 { margin-bottom: .8rem; }
+.booking-ic-dialog .button { margin-top: .6rem; }
+.booking-ic-popup-overlay { z-index: 1000; }
+.booking-ic-popup-content { box-shadow: 0 20px 80px #123f3533; }
