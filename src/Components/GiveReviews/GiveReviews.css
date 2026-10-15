@@ -1,0 +1,26 @@
+.reviews-page { padding-block: 3rem; text-align: left; }
+.reviews-intro { max-width: 47rem; margin-bottom: 2rem; }
+.reviews-intro h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); line-height: 1.1; margin: .8rem 0 1rem; }
+.reviews-note { font-size: .82rem; color: #627164; margin-top: .8rem; }
+.reviews-link { text-decoration: underline; font-weight: 700; }
+.reviews-list { display: grid; gap: 1rem; }
+.review-consultation,.reviews-empty { background: #fff; padding: 1.5rem; border: 1px solid #dce3d4; border-radius: 1rem; }
+.reviews-empty .button { margin-top: 1rem; }
+.review-row { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+.review-row h2 { font-size: 1.3rem; margin-bottom: .3rem; }
+.review-form { display: grid; gap: 1rem; margin-top: 1.5rem; border-top: 1px solid #dce3d4; padding-top: 1.5rem; }
+.review-form textarea { width: 100%; resize: vertical; padding: .8rem; border-radius: .6rem; border: 1px solid #cdd8cc; color: #123f35; background: #fbfcf9; font: inherit; }
+.review-form textarea:focus-visible { outline: 3px solid #64843c; outline-offset: 3px; }
+.review-rating { border: 0; margin: 0; padding: 0; min-width: 0; }
+.review-rating legend { font-weight: 700; font-size: .9rem; margin-bottom: .7rem; }
+.review-rating > div { display: flex; flex-wrap: wrap; gap: .6rem; }
+.review-rating label { display: grid; grid-template-columns: auto 1fr; gap: .3rem .5rem; align-items: center; padding: .7rem; border: 1px solid #c4d3b7; border-radius: .5rem; cursor: pointer; }
+.review-rating label > span:last-child { grid-column: 2; font-size: .8rem; }
+.review-rating label:has(input:checked) { background: #d4ed95; border-color: #123f35; }
+.review-rating input { accent-color: #123f35; }
+.review-actions { display: flex; flex-wrap: wrap; gap: .7rem; }
+.review-error { color: #8d231a; }
+.review-submitted { padding: 1rem; margin-top: 1rem; background: #f0f5e7; border-radius: .6rem; }
+.review-comment { white-space: pre-wrap; overflow-wrap: anywhere; margin-top: .5rem; }
+.reviews-status:not(:empty) { padding: 1rem; margin-top: 1rem; background: #e9f3d8; border-radius: .5rem; }
+@media (max-width: 760px) { .reviews-page { padding-block: 2rem; } .review-row { flex-direction: column; align-items: flex-start; } .review-consultation { padding: 1rem; } }
