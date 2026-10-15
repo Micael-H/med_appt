@@ -1,17 +1,10 @@
 import { useState } from 'react';
+import { readAppointments, storageKey } from '../../services/appointments';
 import doctors, { formatAppointmentDate } from '../data/doctors';
 import DoctorCard from '../DoctorCard/DoctorCard';
 import FindDoctorSearch from '../FindDoctorSearch/FindDoctorSearch';
 import './BookAppointment.css';
 
-function storageKey(user) { return `stayhealthy.appointments.${user?.id || 'guest'}`; }
-function readAppointments(user) {
-  if (!user?.id) return [];
-  try {
-    const saved = JSON.parse(sessionStorage.getItem(storageKey(user)) || '[]');
-    return Array.isArray(saved) ? saved.filter((item) => item && typeof item.id === 'string' && typeof item.date === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(item.date) && typeof item.time === 'string' && /^\d{2}:\d{2}$/.test(item.time) && doctors.some((doctor) => doctor.id === item.doctorId)) : [];
-  } catch { return []; }
-}
 
 function BookingSession({ user }) {
   const [query, setQuery] = useState('');
@@ -22,7 +15,7 @@ function BookingSession({ user }) {
   const [now, setNow] = useState(() => Date.now());
   const filtered = doctors.filter((doctor) => `${doctor.name} ${doctor.specialty}`.toLowerCase().includes(query.trim().toLowerCase()) && (!specialty || doctor.specialty === specialty));
   function save(next) {
-    try { sessionStorage.setItem(storageKey(user), JSON.stringify(next)); setAppointments(next); return true; }
+    try { sessionStorage.setItem(storageKey(user), JSON.stringify(next)); setAppointments(next); window.dispatchEvent(new Event('stayhealthy:appointments')); return true; }
     catch { setMessage('Your browser could not save this appointment. Allow session storage and try again.'); return false; }
   }
   function book(details) {
