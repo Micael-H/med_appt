@@ -6,6 +6,11 @@ import Signup from './Components/Sign_Up/Sign_Up.jsx'
 import Login from './Components/Login/Login.jsx'
 import BookAppointment from './Components/BookAppointment/BookAppointment.jsx'
 import InstantConsultation from './Components/InstantConsultation/InstantConsultation.jsx'
+import Notification from './Components/Notification/Notification.jsx'
+import GiveReviews from './Components/GiveReviews/GiveReviews.jsx'
+import ProfileCard from './Components/ProfileCard/ProfileCard.jsx'
+import ReportsLayout from './Components/ReportsLayout/ReportsLayout.jsx'
+import { readAppointments } from './services/appointments.js'
 import { API_URL } from './config.js'
 import './Components/Navbar/Navbar.css'
 import './assets/forms.css'
@@ -20,6 +25,13 @@ function RouteFocus() {
 function Application() {
   const [user, setUser] = useState(null)
   const [restoring, setRestoring] = useState(true)
+  const [appointmentVersion, setAppointmentVersion] = useState(0)
+  useEffect(() => {
+    const changed = () => setAppointmentVersion(value => value + 1)
+    window.addEventListener('stayhealthy:appointments', changed)
+    return () => window.removeEventListener('stayhealthy:appointments', changed)
+  }, [])
+  const appointments = readAppointments(user)
   useEffect(() => {
     const controller = new AbortController()
     let token
@@ -42,10 +54,13 @@ function Application() {
     try { sessionStorage.removeItem('auth-token'); sessionStorage.removeItem('email') } catch { /* No storage. */ }
     setUser(null)
   }
-  return <><a className="skip-link" href="#main">Skip to content</a><Navbar user={user} onLogout={logout} /><main id="main" tabIndex={-1}><RouteFocus />
+  return <><a className="skip-link" href="#main">Skip to content</a><Navbar user={user} onLogout={logout} /><Notification key={`${user?.id || 'guest'}-${appointmentVersion}`} user={user} appointments={appointments} /><main id="main" tabIndex={-1}><RouteFocus />
     {restoring ? <p className="container loading" role="status">Restoring your session…</p> : <Routes>
       <Route path="/" element={<LandingPage />} /><Route path="/signup" element={<Signup onAuthenticated={authenticate} />} /><Route path="/login" element={<Login onAuthenticated={authenticate} />} />
       <Route path="/appointments" element={<BookAppointment key={user?.id || 'guest'} user={user} />} /><Route path="/instant-consultation" element={<InstantConsultation key={user?.id || 'guest'} user={user} />} />
+      <Route path="/reviews" element={<GiveReviews user={user} appointments={appointments} />} />
+      <Route path="/profile" element={<ProfileCard user={user} onUpdated={authenticate} />} />
+      <Route path="/reports" element={<ReportsLayout user={user} />} />
       <Route path="*" element={<section className="container component-intro"><h1>Page not found</h1><Link className="button" to="/">Return home</Link></section>} />
     </Routes>}</main><footer className="site-footer container"><span>StayHealthy · Medical Appointment Booking</span><span>Academic demonstration · Fictional doctors</span></footer></>
 }
